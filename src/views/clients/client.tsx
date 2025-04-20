@@ -1,4 +1,4 @@
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -18,8 +18,9 @@ import {
   SelectValue
 } from "@/components/ui/select"
 
-import { mockClientData } from "../../../mocks/client"
 import { Client } from "types/client"
+import { useNavigate } from "react-router-dom"
+import { useAppStore } from "@/stores/useAppStore"
 
 const statusMap: Record<string, Client["medical_status"] | "All"> = {
   "active": "Active",
@@ -29,10 +30,19 @@ const statusMap: Record<string, Client["medical_status"] | "All"> = {
 }
 
 const Clients = () => {
+
+  const fetchClients = useAppStore((state) => state.fetchClients)
+  const mockClientData = useAppStore((state) => state.clients)
+
   const [selectedStatus, setSelectedStatus] = useState("all")
   const [searchQuery, setSearchQuery] = useState("")
-  const [filteredData, setFilteredData] = useState<Client[]>(mockClientData)
+  const [filteredData, setFilteredData] = useState<Client[]>([])
   const inputRef = useRef(null)
+  const navigate = useNavigate()
+
+  const handleOnCLickClient = (client: Client) => {
+    navigate(`/detail/${client.id}`)
+  }
 
   const handleOnClickSearchButton = () => {
     setSearchQuery(inputRef.current?.value)
@@ -57,6 +67,16 @@ const Clients = () => {
     setFilteredData(filtered)
     setSearchQuery("")
   }
+
+  useEffect(() => {
+    fetchClients()
+  }, [])
+
+  useEffect(() => {
+    setFilteredData(mockClientData)
+  }, [mockClientData])
+  
+  
   
   return (
     <Card className="container-page p-4" >
@@ -111,7 +131,7 @@ const Clients = () => {
             </TableHeader>
             <TableBody>
               {filteredData.map((client) => (
-                <TableRow key={client.id}>
+                <TableRow key={client.id} onClick={() => handleOnCLickClient(client)}>
                   <TableCell>{client.id}</TableCell>
                   <TableCell>{client.client_name}</TableCell>
                   <TableCell>{client.doa}</TableCell>

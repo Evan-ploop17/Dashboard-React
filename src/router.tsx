@@ -4,11 +4,18 @@ import {
     Route
 } from 'react-router-dom'
 import Clients from './views/clients/client'
+import Layout from './layouts/Layout'
+import CaseDetailContainer from './views/caseDetail'
+
+
 export default function AppRouter() {
     return(
         <BrowserRouter>
             <Routes>
-                <Route path='/clients' element={<Clients />} />
+                <Route element={<Layout />}>
+                    <Route path='/clients' element={<Clients />} />
+                    <Route path='/detail/:id' element={<CaseDetailContainer />} />
+                </Route> 
             </Routes>
         </BrowserRouter>
     )
