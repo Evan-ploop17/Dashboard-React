@@ -1,7 +1,8 @@
 import {
     BrowserRouter,
     Routes,
-    Route
+    Route,
+    Navigate
 } from 'react-router-dom'
 import Clients from './views/clients/client'
 import Layout from './layouts/Layout'
@@ -13,6 +14,7 @@ export default function AppRouter() {
         <BrowserRouter>
             <Routes>
                 <Route element={<Layout />}>
+                    <Route path="/" element={<Navigate to="/clients" replace />} />
                     <Route path='/clients' element={<Clients />} />
                     <Route path='/detail/:id' element={<CaseDetailContainer />} />
                 </Route> 
