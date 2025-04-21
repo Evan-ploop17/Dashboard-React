@@ -5,7 +5,7 @@ const LabeledText = ({
     text
 }: LabeledText) => {
 
-    function convertToKebabCase(str: string ): string {
+    function convertToKebabCase(str: string): string {
         return str
             .toLowerCase()
             .replace(/\s+/g, '-')
@@ -14,14 +14,14 @@ const LabeledText = ({
     return (
         <div>
             <Label className="text-gray-500" htmlFor={convertToKebabCase(label)}>{label}</Label>
-            <p>{text}</p>
+            <p className="text-black text-sm">{text}</p>
         </div>
     )
 }
 
 interface LabeledText {
     label: string;
-    text: string;
+    text: string | undefined;
 }
 
 export default LabeledText

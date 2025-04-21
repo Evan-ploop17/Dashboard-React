@@ -37,7 +37,7 @@ const Clients = () => {
   const [selectedStatus, setSelectedStatus] = useState("all")
   const [searchQuery, setSearchQuery] = useState("")
   const [filteredData, setFilteredData] = useState<Client[]>([])
-  const inputRef = useRef(null)
+  const inputRef = useRef<HTMLInputElement>(null)
   const navigate = useNavigate()
 
   const handleOnCLickClient = (client: Client) => {
@@ -45,7 +45,7 @@ const Clients = () => {
   }
 
   const handleOnClickSearchButton = () => {
-    setSearchQuery(inputRef.current?.value)
+    setSearchQuery(inputRef.current?.value || "")
     const filtered = mockClientData.filter(client => {
       const matchesSearch = client.client_name.toLowerCase().includes(searchQuery.toLowerCase())
       return matchesSearch
@@ -54,7 +54,7 @@ const Clients = () => {
     setSelectedStatus('all')
   }
 
-  const handleOnChangeMedicalStatus = (status) => {
+  const handleOnChangeMedicalStatus = (status: keyof typeof statusMap) => {
     setSelectedStatus(status)
     if (status === 'all') return setFilteredData(mockClientData)
     const filtered = mockClientData.filter(client => {
@@ -92,13 +92,13 @@ const Clients = () => {
       </div>
 
       <div className='flex justify-between' >
+        <Button className="bg-purple-400 text-purple-900 hover:bg-purple-300 hover:cursor-not-allowed" disabled>Add client</Button>
         <Button
-          className="bg-purple-400 text-purple-900 hover:bg-purple-300"
+          className="bg-purple-400 text-purple-900 hover:bg-purple-300 hover:cursor-pointer"
           onClick={handleOnClickSearchButton}
         >
           Filter clients
         </Button>
-        <Button className="bg-purple-400 text-purple-900 hover:bg-purple-300 ">Add client</Button>
       </div>
 
       <div className="space-y-4">
@@ -131,7 +131,7 @@ const Clients = () => {
             </TableHeader>
             <TableBody>
               {filteredData.map((client) => (
-                <TableRow key={client.id} onClick={() => handleOnCLickClient(client)}>
+                <TableRow key={client.id} onClick={() => handleOnCLickClient(client)} className="hover:bg-purple-100 hover:cursor-pointer">
                   <TableCell>{client.id}</TableCell>
                   <TableCell>{client.client_name}</TableCell>
                   <TableCell>{client.doa}</TableCell>

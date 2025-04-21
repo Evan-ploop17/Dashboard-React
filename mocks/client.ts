@@ -4,7 +4,8 @@ export const mockClientData: Client[] = [
     {
         client_name: 'Steven',
         client_status: "pending",
-        birthdate: '',
+        birthdate: '12/12/1999',
+        date_incident: '12/12/1999',
         doa: "success",
         id: "1234",
         law_firm: "XYZ Law",
@@ -13,6 +14,8 @@ export const mockClientData: Client[] = [
     {
         client_name: 'Charles Wise',
         client_status: "pending",
+        birthdate: '12/12/2012',
+        date_incident: '12/12/1999',
         doa: "success",
         id: "2345",
         law_firm: "XYZ Law",
@@ -21,6 +24,8 @@ export const mockClientData: Client[] = [
     {
         client_name: 'Ms. Smith',
         client_status: "pending",
+        birthdate: '06/12/2009',
+        date_incident: '12/12/1999',
         doa: "success",
         id: "3456",
         law_firm: "XYZ Law",
@@ -29,6 +34,8 @@ export const mockClientData: Client[] = [
     {
         client_name: 'Carlos cox',
         client_status: "pending",
+        birthdate: '22/12/1999',
+        date_incident: '12/12/1999',
         doa: "success",
         id: "4567",
         law_firm: "XYZ Law",
@@ -37,6 +44,8 @@ export const mockClientData: Client[] = [
     {
         client_name: 'Fernandinho',
         client_status: "pending",
+        birthdate: '25/12/1999',
+        date_incident: '12/12/1999',
         doa: "success",
         id: "5678",
         law_firm: "XYZ Law",
@@ -45,6 +54,8 @@ export const mockClientData: Client[] = [
     {
         client_name: 'Laura ',
         client_status: "pending",
+        birthdate: '12/08/1979',
+        date_incident: '12/12/1999',
         doa: "success",
         id: "6789",
         law_firm: "XYZ Law",
