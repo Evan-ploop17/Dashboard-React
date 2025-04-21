@@ -4,6 +4,7 @@ export const mockClientData: Client[] = [
     {
         client_name: 'Steven',
         client_status: "pending",
+        birthdate: '',
         doa: "success",
         id: "1234",
         law_firm: "XYZ Law",
